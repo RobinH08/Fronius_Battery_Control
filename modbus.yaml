@@ -1,0 +1,29 @@
+- type: tcp
+  name: Fronius_Gen24_Modbus
+  host: #insert your Fronius IP-adress here
+  port: 502
+  sensors:
+    - name: Fronius Gen24 Modbus OutWRte
+      unique_id: sensor.Fronius_Gen24_Modbus_OutWRte
+      address: 40365
+      slave: 1
+      data_type: int16
+      unit_of_measurement: '%'
+      scan_interval: 2
+    - name: Fronius Gen24 Modbus InWRte
+      unique_id: sensor.Fronius_Gen24_Modbus_InWRte
+      address: 40366
+      slave: 1
+      data_type: int16
+      unit_of_measurement: '%'
+    - name: Fronius Gen24 Modbus WChaDisChaGra_SF
+      unique_id: sensor.Fronius_Gen24_Modbus_WChaDisChaGra_SF
+      address: 40372
+      slave: 1
+      data_type: int16
+      scan_interval: 2
+    - name: Fronius Gen24 Modbus StorCtl_Mod
+      unique_id: sensor.Fronius_Gen24_Modbus_StorCtl_Mod
+      address: 40358
+      slave: 1
+      data_type: int16
