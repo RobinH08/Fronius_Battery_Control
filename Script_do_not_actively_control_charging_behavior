@@ -1,0 +1,31 @@
+alias: Fronius BYD normaler Modus
+sequence:
+  - action: modbus.write_register
+    data:
+      hub: Fronius_Gen24_Modbus
+      address: 40358
+      slave: 1
+      value: "3"
+    enabled: true
+  - action: modbus.write_register
+    data:
+      hub: Fronius_Gen24_Modbus
+      address: 40365
+      slave: 1
+      value: "10000"
+    enabled: true
+  - action: modbus.write_register
+    data:
+      hub: Fronius_Gen24_Modbus
+      address: 40366
+      slave: 1
+      value: "10000"
+    enabled: true
+description: >-
+  Führt Modbus befehle aus, sodass die übergebene Lade/Entladeleistung in % von
+  der Batterie nicht beschränkt wird
+
+
+  Dh Ladung wenn überschüssiger PV Strom und Entladung wenn Verbraucher
+icon: mdi:battery-charging-60
+fields: {}
