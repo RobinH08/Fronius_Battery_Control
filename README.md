@@ -17,3 +17,6 @@ set charging power script:
 both scripts:
 * adopt scaling factor in all registry-write calls (standard value in code is 2.05) depending on the behavior of your system
 
+Disclamer:
+* there could be errors in the code
+* scaling factor provided by fronius will not be used - if there are changes in a future software update of your inverter, the provided code may not work
