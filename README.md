@@ -4,6 +4,7 @@ With the files in this repository are able to control your battry (ie. BYD) conn
 The code is optimized for slowly changes in a Fronius Gen24 10kW inverter connected with a BYD HVM 22.1
 
 Changes you need to do:
+
 Fronius inverter:
 * Activate Modbus TCP Slave mode in technician mode of your inverter with standard configuration
 
