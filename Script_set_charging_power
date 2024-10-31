@@ -1,0 +1,102 @@
+alias: Fronius BYD set charging power
+sequence:
+  - if:
+      - condition: template
+        value_template: "{{ ladeleistung > 0 }}"
+    then:
+      - action: script.fronius_byd_normaler_modus
+        metadata: {}
+        data: {}
+      - action: modbus.write_register
+        data:
+          hub: Fronius_Gen24_Modbus
+          address: 40358
+          slave: 1
+          value: "3"
+        enabled: true
+      - action: modbus.write_register
+        data:
+          hub: Fronius_Gen24_Modbus
+          address: 40365
+          slave: 1
+          value: "{{ (65536 - (ladeleistung / 2.05)) | int }}"
+        enabled: true
+      - action: modbus.write_register
+        data:
+          hub: Fronius_Gen24_Modbus
+          address: 40366
+          slave: 1
+          value: "{{ (ladeleistung / 2.05) | int }}"
+        enabled: true
+    else:
+      - if:
+          - condition: template
+            value_template: "{{ ladeleistung < 0 }}"
+        then:
+          - action: script.fronius_byd_normaler_modus
+            metadata: {}
+            data: {}
+          - action: modbus.write_register
+            data:
+              hub: Fronius_Gen24_Modbus
+              address: 40358
+              slave: 1
+              value: "3"
+            enabled: true
+          - action: modbus.write_register
+            data:
+              hub: Fronius_Gen24_Modbus
+              address: 40366
+              slave: 1
+              value: "{{ (65536 + (ladeleistung / 2.05)) | int }}"
+            enabled: true
+          - action: modbus.write_register
+            data:
+              hub: Fronius_Gen24_Modbus
+              address: 40365
+              slave: 1
+              value: "{{ (-1* (ladeleistung / 2.05)) | int }}"
+            enabled: true
+        else:
+          - action: script.fronius_byd_normaler_modus
+            metadata: {}
+            data: {}
+          - action: modbus.write_register
+            data:
+              hub: Fronius_Gen24_Modbus
+              address: 40358
+              slave: 1
+              value: "3"
+            enabled: true
+          - action: modbus.write_register
+            data:
+              hub: Fronius_Gen24_Modbus
+              address: 40365
+              slave: 1
+              value: "0"
+            enabled: true
+          - action: modbus.write_register
+            data:
+              hub: Fronius_Gen24_Modbus
+              address: 40366
+              slave: 1
+              value: "0"
+            enabled: true
+description: >-
+  Führt Modbus befehle aus, sodass die übergebene Lade/Entladeleistung von der
+  Batterie exakt eingehalten wird
+
+
+  Übergabeparameter von 9400W(Laden) bis -9400W(Entladen) möglich
+icon: mdi:battery-charging-60
+fields:
+  ladeleistung:
+    selector:
+      number:
+        min: -9400
+        max: 9400
+        step: 1
+    name: Ladeleistung
+    description: 9400W(Laden) bis -9400W(Entladen) möglich
+    default: 0
+    required: true
