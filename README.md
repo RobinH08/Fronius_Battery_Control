@@ -16,9 +16,8 @@ modbus.yaml
 
 set charging power script:
 * change maximum charging/discharging power of your battery
-
-both scripts:
 * adopt scaling factor in all registry-write calls (standard value in code is 2.05) depending on the behavior of your system
+* * if your Scaling Factor entity is not 0, you have to multiply all value by 10^x
 
 Disclamer:
 * there could be errors in the code
