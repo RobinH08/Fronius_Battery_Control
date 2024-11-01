@@ -11,7 +11,7 @@ Fronius inverter:
 Add the following line to your cofiguration.yaml
 * modbus: !include modbus.yaml
   
-Modbus.yaml
+modbus.yaml
 * enter IP-adress of your Fronius inverter
 
 set charging power script:
