@@ -11,7 +11,7 @@ Fronius inverter:
 Add the following line to your cofiguration.yaml
 * modbus: !include modbus.yaml
   
-modbus.yaml
+Create modbus.yaml
 * enter IP-adress of your Fronius inverter
 
 Restart Home Assistant
