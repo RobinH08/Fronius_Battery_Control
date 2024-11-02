@@ -1,4 +1,4 @@
-alias: Fronius BYD do_not_actively_control_charging_behavior
+alias: Fronius BYD normaler Modus
 sequence:
   - action: modbus.write_register
     data:
