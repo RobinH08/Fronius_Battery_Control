@@ -7,6 +7,7 @@ You need to do the following steps:
 
 Fronius inverter:
 * Activate Modbus TCP Slave mode in technician mode of your inverter with standard configuration
+* Use SunSpec Model Type: float
 
 Add the following line to your cofiguration.yaml
 * modbus: !include modbus.yaml
